@@ -25,7 +25,8 @@
    <javac srcdir="${src.dir}"
           destdir="${classes.dir}"
           classpathref="javadoc.example.classpath"
-          debug="${javac.debug}" />
+          debug="${javac.debug}"
+          includeantruntime="false" />
 </target>
 
 <target name="jar"
