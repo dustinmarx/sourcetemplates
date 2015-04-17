@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Look for XXXXX and replace with appropriate String. -->
+<project name="XXXXX" default="all" basedir=".">
+<description>XXXXX</description>
+
+<property name="javac.debug" value="true" />
+<property name="src.dir" value="src" />
+<property name="dist.dir" value="dist" />
+<property name="classes.dir" value="classes" />
+<property name="javadoc.dir" value="${dist.dir}/javadoc" />
+
+<property name="jar.name" value="XXXXX.jar" />
+<property name="jar.filesonly" value="true" />
+
+<path id="javadoc.example.classpath" />
+
+<target name="-init">
+<mkdir dir="${classes.dir}" />
+<mkdir dir="${dist.dir}" />
+</target>
+
+<target name="compile"
+        description="Compile the Java code."
+        depends="-init">
+   <javac srcdir="${src.dir}"
+          destdir="${classes.dir}"
+          classpathref="javadoc.example.classpath"
+          debug="${javac.debug}" />
+</target>
+
+<target name="jar"
+        description="Package compiled classes into JAR file"
+        depends="compile">
+   <jar destfile="${dist.dir}/${jar.name}"
+        basedir="${classes.dir}"
+        filesonly="${jar.filesonly}">
+   </jar>
+</target>
+
+<target name="all"
+         description="Compile Java source, assemble JAR, and generate documentation"
+         depends="jar, javadoc" />
+
+<target name="javadoc" description="Generate Javadoc-based documentation">
+   <mkdir dir="${javadoc.dir}" />
+   <javadoc doctitle="XXXXX"
+            destdir="${javadoc.dir}"
+            sourcepath="${src.dir}"
+            classpathref="javadoc.example.classpath"
+            private="true"
+            author="Dustin" />
+</target>
+
+<target name="clean" description="Remove generated artifacts.">
+   <delete dir="${classes.dir}" />
+   <delete dir="${dist.dir}" />
+</target>
+
+</project>
